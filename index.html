@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Resume Pro - make a resume or CV, free</title>
+<meta name="description" content="Build a professional resume in minutes and download it as PDF or Word.">
+<meta name="theme-color" content="#6d4aff">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top">
+ <div class="logo"><img src="icon.svg" alt="">Resume Pro<small class="ver">v8</small></div>
+ <div class="tools">
+  <button id="help" class="ghost">How to use</button>
+  <button id="login" class="ghost">Login</button>
+  <button id="print" class="main">Download PDF</button>
+ </div>
+</header>
+<div class="meter"><i id="prog"></i></div>
+<section class="hero"><h1>Make your resume or CV in minutes</h1><p>Pick a look, add your details, download the PDF. Free, and no signup needed.</p></section>
+<main class="app">
+ <section class="design" aria-label="Design options">
+  <div><label>Template</label><div class="seg wrap" id="tpl" role="group" aria-label="Template"><button data-t="classic">Classic</button><button data-t="modern">Modern</button><button data-t="minimal">Minimal</button><button data-t="bold">Bold</button><button data-t="compact">Compact</button></div></div>
+  <div><label>Colour</label><div class="sw" id="sw" role="group" aria-label="Accent colour"></div></div>
+  <div><label for="font">Font</label><select id="font"><option value="sans">Modern sans</option><option value="serif">Serif</option><option value="arial">Arial</option></select></div>
+  <div><label>Text size</label><div class="seg" id="size" role="group" aria-label="Text size"><button data-z="s">Small</button><button data-z="m">Normal</button><button data-z="l">Large</button></div></div>
+ </section>
+ <section class="form" aria-label="Your details">
+  <div class="hd"><b id="pct">0% complete</b><span><button id="undo" class="ghost sm">Undo</button><button id="redo" class="ghost sm">Redo</button><button id="sample" class="ghost sm">Try sample</button><button id="clear" class="ghost sm">Clear</button></span></div>
+  <button id="next" class="next"></button>
+  <details open><summary>Basics</summary><div class="in">
+   <div class="photo"><img id="ph" alt=""><label class="btn" for="file">Add photo</label><input id="file" type="file" accept="image/*" hidden><button id="rmph" class="ghost sm">Remove</button></div>
+   <label for="name">Full name</label><input id="name" data-k="name" autocomplete="name" placeholder="e.g. Ayesha Khan">
+   <label for="title">Job title</label><input id="title" data-k="title" placeholder="e.g. Graphic Designer">
+   <div class="row"><div><label for="email">Email</label><input id="email" data-k="email" type="email" autocomplete="email"></div>
+   <div><label for="phone">Phone</label><input id="phone" data-k="phone" type="tel" autocomplete="tel"></div></div>
+   <div class="row"><div><label for="city">City</label><input id="city" data-k="city" autocomplete="address-level2"></div>
+   <div><label for="link">LinkedIn or website</label><input id="link" data-k="link" placeholder="linkedin.com/in/you"></div></div>
+  </div></details>
+  <details open><summary>About me</summary><div class="in"><textarea id="summary" data-k="summary" placeholder="2-3 lines about your strengths and goals"></textarea><div id="tip" class="tip"></div><button type="button" class="ai-btn" data-ai="summary">&#10024; Write for me</button></div></details>
+  <details open><summary>Experience</summary><div class="in"><div id="exp"></div><button class="add" data-add="exp">+ Add experience</button></div></details>
+  <details><summary>Projects</summary><div class="in"><div id="proj"></div><button class="add" data-add="proj">+ Add project</button></div></details>
+  <details><summary>Education</summary><div class="in"><div id="edu"></div><button class="add" data-add="edu">+ Add education</button></div></details>
+  <details><summary>Certifications</summary><div class="in"><div id="cert"></div><button class="add" data-add="cert">+ Add certificate</button></div></details>
+  <details><summary>Skills and languages</summary><div class="in">
+   <label for="skills">Skills (separate with commas)</label><input id="skills" data-k="skills" placeholder="Photoshop, Teamwork">
+   <label for="langs">Languages (separate with commas)</label><input id="langs" data-k="langs" placeholder="Urdu, English"></div></details>
+  <details><summary>Personal details (for CV)</summary><div class="in">
+   <div class="row"><div><label for="father">Father's name</label><input id="father" data-k="father"></div><div><label for="dob">Date of birth</label><input id="dob" data-k="dob" placeholder="15 March 2000"></div></div>
+   <div class="row"><div><label for="nat">Nationality</label><input id="nat" data-k="nat"></div><div><label for="mar">Marital status</label><input id="mar" data-k="mar"></div></div></div></details>
+  <details><summary>References</summary><div class="in"><input id="refs" data-k="refs" placeholder="Available on request"></div></details>
+  <details><summary>Export and backup</summary><div class="in"><div class="exp">
+   <button id="word">Download Word (.docx)</button><button id="prn">Print</button><button id="bk">Save backup</button><label class="btn" for="rs">Load backup</label><input id="rs" type="file" accept=".json" hidden></div></div></details>
+ </section>
+ <section class="stage"><div class="paper" id="paper" aria-label="Resume preview"></div></section>
+</main>
+<nav class="tabs"><button data-v="edit" class="on">Edit</button><button data-v="prev">Preview</button></nav>
+<dialog id="dlg"><h2>Save your resume online</h2><p class="mute">Login to open it on any device.</p>
+ <label for="em">Email</label><input id="em" type="email" autocomplete="email">
+ <label for="pw">Password (6+ characters)</label><input id="pw" type="password" autocomplete="current-password">
+ <p id="err" class="err" role="alert"></p>
+ <div class="row"><button id="doLogin" class="main">Login</button><button id="doReg" class="ghost">Create account</button></div>
+ <button id="cancel" class="ghost sm">Close</button></dialog>
+<dialog id="guide"><h2>Make your resume or CV in 3 steps</h2>
+ <ol class="steps"><li><span><b>Pick a look.</b> Choose a template and colour in the bar at the top.</span></li>
+ <li><span><b>Add your details.</b> Your resume updates as you type. The "Next" button always shows what to add.</span></li>
+ <li><span><b>Download.</b> Press "Download PDF" and choose "Save as PDF". Done.</span></li></ol>
+ <b>Good to know</b>
+ <ul class="tips"><li>No signup needed. Your work saves on this device automatically.</li><li>Made a mistake? Use Undo. Use the arrows to move entries up or down.</li><li>For a CV, also fill in Personal details and References.</li><li>Keep it to one page, with short and clear points.</li><li id="tipLogin">Login to open your resume on any device.</li><li>Use Download Word if you want to edit it in MS Word.</li><li id="tipAI">Not sure how to write it? Tap "Write for me", type in your own words (Roman Urdu is fine) and get professional English.</li></ul>
+ <div class="row"><button id="gSample">Fill with sample</button><button id="gClose" class="main">Start</button></div></dialog>
+<dialog id="aiDlg"><h2>Write for me</h2><p class="mute">Write in your own words. Urdu, Roman Urdu or English all work. Only use true facts.</p>
+ <textarea id="aiIn" placeholder="Example: maine 2 saal shop par kaam kiya, customers ko sambhala aur cash ka hisab rakha"></textarea>
+ <button id="aiGo" class="main">Write professional English</button>
+ <label for="aiOut">Result (you can edit it)</label><textarea id="aiOut"></textarea><p id="aiErr" class="err" role="alert"></p>
+ <div class="row"><button id="aiUse" class="main">Use this text</button><button id="aiClose" class="ghost">Close</button></div></dialog>
+<dialog id="ask"><p id="askMsg"></p><div class="row"><button id="askNo" class="ghost">Cancel</button><button id="askYes" class="main">Yes</button></div></dialog>
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body></html>
