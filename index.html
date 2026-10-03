@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="style.css">
 </head><body>
 <header class="top">
- <div class="logo"><img src="icon.svg" alt="">Resume Pro<small class="ver">v8</small></div>
+ <div class="logo"><img src="icon.svg" alt="">Resume Pro<small class="ver">v10</small></div>
  <div class="tools">
   <button id="help" class="ghost">How to use</button>
   <button id="login" class="ghost">Login</button>
@@ -31,24 +31,24 @@
   <button id="next" class="next"></button>
   <details open><summary>Basics</summary><div class="in">
    <div class="photo"><img id="ph" alt=""><label class="btn" for="file">Add photo</label><input id="file" type="file" accept="image/*" hidden><button id="rmph" class="ghost sm">Remove</button></div>
-   <label for="name">Full name</label><input id="name" data-k="name" autocomplete="name" placeholder="e.g. Ayesha Khan">
+   <label for="name">Full name</label><input id="name" data-k="name" autocomplete="name" placeholder="e.g. Muhammad Arslan">
    <label for="title">Job title</label><input id="title" data-k="title" placeholder="e.g. Graphic Designer">
-   <div class="row"><div><label for="email">Email</label><input id="email" data-k="email" type="email" autocomplete="email"></div>
-   <div><label for="phone">Phone</label><input id="phone" data-k="phone" type="tel" autocomplete="tel"></div></div>
-   <div class="row"><div><label for="city">City</label><input id="city" data-k="city" autocomplete="address-level2"></div>
-   <div><label for="link">LinkedIn or website</label><input id="link" data-k="link" placeholder="linkedin.com/in/you"></div></div>
+   <div class="row"><div><label for="email">Email</label><input id="email" data-k="email" type="email" autocomplete="email" placeholder="name@example.com"></div>
+   <div><label for="phone">Phone</label><input id="phone" data-k="phone" type="tel" autocomplete="tel" placeholder="03xxxxxxxxx"></div></div>
+   <div class="row"><div><label for="city">City</label><input id="city" data-k="city" autocomplete="address-level2" placeholder="e.g. Lahore"></div>
+   <div><label for="link">LinkedIn or website</label><input id="link" data-k="link" placeholder="behance.net/yourname"></div></div>
   </div></details>
-  <details open><summary>About me</summary><div class="in"><textarea id="summary" data-k="summary" placeholder="2-3 lines about your strengths and goals"></textarea><div id="tip" class="tip"></div><button type="button" class="ai-btn" data-ai="summary">&#10024; Write for me</button></div></details>
+  <details open><summary>About me</summary><div class="in"><textarea id="summary" data-k="summary" placeholder="Creative designer with 3 years of experience in branding and social media design..."></textarea><div id="tip" class="tip"></div><button type="button" class="ai-btn" data-ai="summary">&#10024; Write for me</button></div></details>
   <details open><summary>Experience</summary><div class="in"><div id="exp"></div><button class="add" data-add="exp">+ Add experience</button></div></details>
   <details><summary>Projects</summary><div class="in"><div id="proj"></div><button class="add" data-add="proj">+ Add project</button></div></details>
   <details><summary>Education</summary><div class="in"><div id="edu"></div><button class="add" data-add="edu">+ Add education</button></div></details>
   <details><summary>Certifications</summary><div class="in"><div id="cert"></div><button class="add" data-add="cert">+ Add certificate</button></div></details>
   <details><summary>Skills and languages</summary><div class="in">
-   <label for="skills">Skills (separate with commas)</label><input id="skills" data-k="skills" placeholder="Photoshop, Teamwork">
-   <label for="langs">Languages (separate with commas)</label><input id="langs" data-k="langs" placeholder="Urdu, English"></div></details>
+   <label for="skills">Skills (separate with commas)</label><input id="skills" data-k="skills" placeholder="Photoshop, Illustrator, Figma">
+   <label for="langs">Languages (separate with commas)</label><input id="langs" data-k="langs" placeholder="Urdu, English, Punjabi"></div></details>
   <details><summary>Personal details (for CV)</summary><div class="in">
-   <div class="row"><div><label for="father">Father's name</label><input id="father" data-k="father"></div><div><label for="dob">Date of birth</label><input id="dob" data-k="dob" placeholder="15 March 2000"></div></div>
-   <div class="row"><div><label for="nat">Nationality</label><input id="nat" data-k="nat"></div><div><label for="mar">Marital status</label><input id="mar" data-k="mar"></div></div></div></details>
+   <div class="row"><div><label for="father">Father's name</label><input id="father" data-k="father" placeholder="xxxxxxxx"></div><div><label for="dob">Date of birth</label><input id="dob" data-k="dob" placeholder="xx-xx-2000"></div></div>
+   <div class="row"><div><label for="nat">Nationality</label><input id="nat" data-k="nat" placeholder="Pakistani"></div><div><label for="mar">Marital status</label><input id="mar" data-k="mar" placeholder="Single"></div></div></div></details>
   <details><summary>References</summary><div class="in"><input id="refs" data-k="refs" placeholder="Available on request"></div></details>
   <details><summary>Export and backup</summary><div class="in"><div class="exp">
    <button id="word">Download Word (.docx)</button><button id="prn">Print</button><button id="bk">Save backup</button><label class="btn" for="rs">Load backup</label><input id="rs" type="file" accept=".json" hidden></div></div></details>
@@ -65,11 +65,12 @@
 <dialog id="guide"><h2>Make your resume or CV in 3 steps</h2>
  <ol class="steps"><li><span><b>Pick a look.</b> Choose a template and colour in the bar at the top.</span></li>
  <li><span><b>Add your details.</b> Your resume updates as you type. The "Next" button always shows what to add.</span></li>
- <li><span><b>Download.</b> Press "Download PDF" and choose "Save as PDF". Done.</span></li></ol>
+ <li><span><b>Download.</b> Press "Download PDF". Your PDF file is saved. Done.</span></li></ol>
  <b>Good to know</b>
  <ul class="tips"><li>No signup needed. Your work saves on this device automatically.</li><li>Made a mistake? Use Undo. Use the arrows to move entries up or down.</li><li>For a CV, also fill in Personal details and References.</li><li>Keep it to one page, with short and clear points.</li><li id="tipLogin">Login to open your resume on any device.</li><li>Use Download Word if you want to edit it in MS Word.</li><li id="tipAI">Not sure how to write it? Tap "Write for me", type in your own words (Roman Urdu is fine) and get professional English.</li></ul>
  <div class="row"><button id="gSample">Fill with sample</button><button id="gClose" class="main">Start</button></div></dialog>
 <dialog id="aiDlg"><h2>Write for me</h2><p class="mute">Write in your own words. Urdu, Roman Urdu or English all work. Only use true facts.</p>
+ <p id="aiHint" class="mute"></p>
  <textarea id="aiIn" placeholder="Example: maine 2 saal shop par kaam kiya, customers ko sambhala aur cash ka hisab rakha"></textarea>
  <button id="aiGo" class="main">Write professional English</button>
  <label for="aiOut">Result (you can edit it)</label><textarea id="aiOut"></textarea><p id="aiErr" class="err" role="alert"></p>

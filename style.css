@@ -160,3 +160,6 @@ button[hidden]{display:none!important}#ask{width:min(340px,92vw)}#ask p{margin:0
 .ai-btn{display:none;margin-top:6px;font-size:13px;padding:5px 12px;border-color:color-mix(in srgb,var(--ac) 45%,transparent);color:var(--ac);background:color-mix(in srgb,var(--ac) 8%,transparent)}
 body.ai .ai-btn{display:inline-block}body:not(.ai) #tipAI{display:none}
 #aiDlg{width:min(540px,94vw)}#aiDlg textarea{min-height:90px;margin-bottom:8px}#aiDlg #aiGo{width:100%}
+
+input.is-sample,textarea.is-sample{color:var(--mute);font-style:italic}
+input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--mute) 70%,transparent)}
