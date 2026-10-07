@@ -1,4 +1,6 @@
 const $=id=>document.getElementById(id),KEY="rp-v2",TOK="rp-token";
+const SS=(()=>{try{sessionStorage.setItem("t","1");sessionStorage.removeItem("t");return sessionStorage}catch(e){return{getItem(){return null},setItem(){},removeItem(){}}}})();
+let dirty=false;
 const TR=[
 [`How to use`,`استعمال کا طریقہ`,`Istemal ka tareeqa`],
 [`Make your resume or CV in minutes`,`چند منٹ میں اپنا ریزیومے یا سی وی بنائیں`,`Chand minute mein apna resume ya CV banayein`],
@@ -64,15 +66,24 @@ const TR=[
 [`Quick template used. You can edit it.`,`فوری نمونہ استعمال ہوا۔ آپ اسے بدل سکتے ہیں۔`,`Fori namoona istemal hua. Aap ise badal sakte hain.`],
 [`AI is busy, so a quick template was used. You can edit it.`,`اے آئی مصروف ہے، اس لیے فوری نمونہ لکھا گیا۔ آپ اسے بدل سکتے ہیں۔`,`AI masroof hai, is liye fori namoona likha gaya. Aap ise badal sakte hain.`],
 [`Save your resume online`,`اپنا ریزیومے آن لائن محفوظ کریں`,`Apna resume online save karein`],[`Login to open it on any device.`,`کسی بھی ڈیوائس پر کھولنے کے لیے لاگ اِن کریں۔`,`Kisi bhi device par kholne ke liye login karein.`],
-[`Password (6+ characters)`,`پاس ورڈ (6 یا زیادہ حروف)`,`Password (6 ya zyada huroof)`],[`Create account`,`نیا اکاؤنٹ بنائیں`,`Naya account banayein`]
+[`Password (6+ characters)`,`پاس ورڈ (6 یا زیادہ حروف)`,`Password (6 ya zyada huroof)`],[`Create account`,`نیا اکاؤنٹ بنائیں`,`Naya account banayein`],
+[`Download App`,`ایپ ڈاؤن لوڈ کریں`,`App download karein`],
+[`Install Resume Pro as an app`,`ریزیومے پرو کو ایپ کی طرح انسٹال کریں`,`Resume Pro ko app ki tarah install karein`],
+[`On iPhone: tap the Share button (square with an arrow), then "Add to Home Screen", then "Add".`,`آئی فون پر: شیئر کا بٹن (تیر والا چوکور) دبائیں، پھر "Add to Home Screen"، پھر "Add" دبائیں۔`,`iPhone par: Share button (teer wala chaukor) dabayein, phir "Add to Home Screen", phir "Add" dabayein.`],
+[`On Android: tap the menu (three dots) in Chrome, then "Install app" or "Add to Home screen".`,`اینڈرائیڈ پر: کروم کا مینو (تین نقطے) دبائیں، پھر "Install app" یا "Add to Home screen" دبائیں۔`,`Android par: Chrome ka menu (teen nuqte) dabayein, phir "Install app" ya "Add to Home screen" dabayein.`],
+[`On a computer: click the install icon at the right of the address bar, or open the browser menu and choose "Install Resume Pro".`,`کمپیوٹر پر: ایڈریس بار کے دائیں طرف انسٹال کا نشان دبائیں، یا براؤزر کے مینو سے "Install Resume Pro" چنیں۔`,`Computer par: address bar ke daayein taraf install ka nishan dabayein, ya browser menu se "Install Resume Pro" chunein.`],
+[`App installed`,`ایپ انسٹال ہو گئی`,`App install ho gayi`],
+[`Ongoing (still studying)`,`جاری ہے (ابھی پڑھ رہا ہوں)`,`Jaari hai (abhi parh raha hoon)`],
+[`I currently work here`,`میں ابھی یہاں کام کرتا ہوں`,`Main abhi yahan kaam karta hoon`],
+[`Tap "Download App" to put this on your phone like a normal app.`,`"ایپ ڈاؤن لوڈ کریں" دبائیں تاکہ یہ عام ایپ کی طرح آپ کے فون میں آ جائے۔`,`"App download karein" dabayein taake yeh aam app ki tarah aap ke phone mein aa jaye.`]
 ];
 const DICT={ur:{},rm:{}};TR.forEach(r=>{DICT.ur[r[0]]=r[1];DICT.rm[r[0]]=r[2]});
 let LANG=(()=>{try{const l=localStorage.getItem("rp-lang");if(l==="en"||l==="ur"||l==="rm")return l}catch(e){}return /^ur/i.test(navigator.language||"")?"ur":"en"})();
 const tr=(k,v)=>{const s=(LANG!=="en"&&DICT[LANG]&&DICT[LANG][k])||k;return v===undefined?s:s.replace("{x}",v)};
-const TAGS='label,summary,.hero h1,.hero p,.tag,#guide h2,#guide li span,#guide .tips li,#guide > b,#gSample,#gClose,#help,#print,#print2,#undo,#redo,#sample,#clear,#rmph,.add,#word,#prn,#bk,#tpl button,#size button,#askYes,#askNo,#aiDlg h2,#aiDlg p.mute:not(#aiHint):not(#aiNote),#aiGo,#aiUse,#aiClose,#dlg h2,#dlg p.mute,#doLogin,#doReg,#cancel,.tabs button';
+const TAGS='label,summary,.hero h1,.hero p,.tag,#guide h2,#guide li span,#guide .tips li,#guide > b,#gSample,#gClose,#help,#print,#print2,#undo,#redo,#sample,#clear,#rmph,.add,#word,#prn,#bk,#tpl button,#size button,#askYes,#askNo,#aiDlg h2,#aiDlg p.mute:not(#aiHint):not(#aiNote),#aiGo,#aiUse,#aiClose,#dlg h2,#dlg p.mute,#doLogin,#doReg,#cancel,.tabs button,#install,#gInstall,#instDlg h2,#instClose';
 const LISTS={
- exp:[["role","Job title"],["company","Company"],["dates","Dates (e.g. 2022 - Present)"],["desc","What did you do?","t"]],
- edu:[["degree","Degree"],["school","School or university"],["dates","Dates"]],
+ exp:[["role","Job title"],["company","Company"],["dates","Dates (e.g. 2022 - Present)"],["ongoing","I currently work here","c"],["desc","What did you do?","t"]],
+ edu:[["degree","Degree"],["school","School or university"],["dates","Dates"],["ongoing","Ongoing (still studying)","c"]],
  proj:[["name","Project name"],["link","Link (optional)"],["desc","What is it?","t"]],
  cert:[["name","Certificate"],["issuer","Issued by"],["year","Year"]]};
 const PH={exp:{role:"Graphic Designer",company:"Pixel Studio",dates:"2023 - Present",desc:"Designed logos and social posts for 20+ clients."},edu:{degree:"BS Visual Arts",school:"University of the Punjab",dates:"2019 - 2023"},proj:{name:"Local Cafe Rebrand",link:"behance.net/yourname",desc:"Logo, menu and packaging for a local cafe."},cert:{name:"Google UX Design",issuer:"Coursera",year:"2023"}};
@@ -82,20 +93,21 @@ const blank=()=>({name:"",title:"",email:"",phone:"",city:"",link:"",summary:"",
 const SAMPLE={name:"Muhammad Arslan",title:"Graphic Designer",email:"name@example.com",phone:"03xxxxxxxxx",city:"Lahore",link:"behance.net/yourname",father:"xxxxxxxx",dob:"xx-xx-2000",nat:"Pakistani",mar:"Single",refs:"Available on request",
  summary:"Creative graphic designer with 3 years of experience in branding and social media design. I like turning ideas into clean, useful visuals that help small businesses grow.",
  skills:"Photoshop, Illustrator, Figma, Communication",langs:"Urdu, English, Punjabi",
- exp:[{role:"Graphic Designer",company:"Pixel Studio",dates:"2023 - Present",desc:"Designed logos and social posts for 20+ clients.\nCut delivery time by 30% with reusable templates."}],
+ exp:[{role:"Graphic Designer",company:"Pixel Studio",dates:"2023",ongoing:true,desc:"Designed logos and social posts for 20+ clients.\nCut delivery time by 30% with reusable templates."}],
  edu:[{degree:"BS Visual Arts",school:"University of the Punjab",dates:"2019 - 2023"}],
  proj:[{name:"Local Cafe Rebrand",link:"behance.net/yourname",desc:"Logo, menu and packaging for a local cafe."}],
  cert:[{name:"Google UX Design",issuer:"Coursera",year:"2023"}]};
 const COLORS=["#6d4aff","#2563eb","#0d9488","#e11d74","#f97316"];
 let S=blank(),token=null,timer,tt,hT,hist=[],hi=-1;
-try{Object.assign(S,JSON.parse(localStorage.getItem(KEY)||"{}"));token=localStorage.getItem(TOK)}catch(e){}
+try{localStorage.removeItem(KEY);localStorage.removeItem(TOK)}catch(e){} // older versions kept resumes on the device: remove them
+try{Object.assign(S,JSON.parse(SS.getItem(KEY)||"{}"));token=SS.getItem(TOK)}catch(e){}
 // old sample left in this browser by an earlier version: swap it for the new masked sample
 const design=()=>({tpl:S.tpl,ac:S.ac,font:S.font,size:S.size});
 function stripSample(s){ // sample text must only appear after pressing "Try sample": remove any sample text the user never changed
  const old=s.name==="Ayesha Khan"&&s.email==="ayesha@example.com";
  if(old)return Object.assign(blank(),{tpl:s.tpl,ac:s.ac,font:s.font,size:s.size});
  Object.keys(SAMPLE).forEach(k=>{if(typeof SAMPLE[k]==="string"&&s[k]===SAMPLE[k])s[k]=""});
- Object.keys(LISTS).forEach(k=>{const keep=(s[k]||[]).map(it=>{const n={...it};LISTS[k].forEach(f=>{if((SAMPLE[k]||[]).some(x=>x[f[0]]===it[f[0]]))n[f[0]]=""});return n}).filter(it=>Object.values(it).some(Boolean));
+ Object.keys(LISTS).forEach(k=>{const keep=(s[k]||[]).map(it=>{const n={...it};LISTS[k].forEach(f=>{if(f[2]!=="c"&&(SAMPLE[k]||[]).some(x=>x[f[0]]===it[f[0]]))n[f[0]]=""});if(!LISTS[k].some(f=>f[2]!=="c"&&n[f[0]]))LISTS[k].forEach(f=>{if(f[2]==="c")n[f[0]]=""});return n}).filter(it=>Object.values(it).some(Boolean));
   s[k]=keep.length||k==="proj"||k==="cert"?keep:[newItem(k)]});
  return s}
 S=stripSample(S);
@@ -106,17 +118,18 @@ function ask(msg){return new Promise(r=>{const d=$("ask");$("askMsg").textConten
 async function api(p,m,b){
  const r=await fetch("/api"+p,{method:m||"GET",headers:{"Content-Type":"application/json",...(token?{Authorization:"Bearer "+token}:{})},body:b?JSON.stringify(b):undefined});
  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||"Something went wrong");return d}
-function persist(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(token){clearTimeout(timer);timer=setTimeout(cloud,1200)}}
+function persist(){try{SS.setItem(KEY,JSON.stringify(S))}catch(e){}if(token){clearTimeout(timer);timer=setTimeout(cloud,1200)}}
 function snap(){const j=JSON.stringify(S);if(hist[hi]===j)return;hist=hist.slice(0,hi+1);hist.push(j);if(hist.length>60)hist.shift();hi=hist.length-1}
-function save(){persist();clearTimeout(hT);hT=setTimeout(snap,500)}
+function save(){dirty=true;persist();clearTimeout(hT);hT=setTimeout(snap,500)}
 function go(d){snap();const n=hi+d;if(n<0||n>=hist.length)return toast(d<0?"Nothing to undo":"Nothing to redo");hi=n;S=Object.assign(blank(),JSON.parse(hist[hi]));persist();all()}
-async function cloud(){try{await api("/resume","PUT",S);toast("Saved to your account")}catch(e){toast("Server not reachable. Saved on this device.")}}
+async function cloud(){try{await api("/resume","PUT",S);dirty=false;toast("Saved to your account")}catch(e){toast("Server not reachable. Saved on this device.")}}
 function buildList(k,n){
  $(k).innerHTML=S[k].map((it,i)=>`<div class="entry${i===n?" new":""}">`+LISTS[k].map(f=>{
   const id=k+i+f[0],a=`id="${id}" data-l="${k}" data-i="${i}" data-f="${f[0]}" dir="auto" placeholder="${esc((PH[k]||{})[f[0]]||"")}"`;
-  return `<label for="${id}">${tr(f[1])}</label>`+(f[2]?`<textarea ${a}>${esc(it[f[0]])}</textarea><button type="button" class="ai-btn" data-ai="${k}:${i}:${f[0]}">&#10024; ${tr("Write for me")}</button>`:`<input ${a} value="${esc(it[f[0]])}">`)}).join("")+
+  return (f[2]==="c"?"":`<label for="${id}">${tr(f[1])}</label>`)+(f[2]==="c"?`<label class="chk"><input type="checkbox" ${a}${it[f[0]]?" checked":""}><span>${tr(f[1])}</span></label>`:f[2]?`<textarea ${a}>${esc(it[f[0]])}</textarea><button type="button" class="ai-btn" data-ai="${k}:${i}:${f[0]}">&#10024; ${tr("Write for me")}</button>`:`<input ${a} value="${esc(it[f[0]])}">`)}).join("")+
   `<div class="act"><button class="ghost sm" data-mv="${k}" data-i="${i}" data-d="-1" aria-label="Move up">&uarr;</button><button class="ghost sm" data-mv="${k}" data-i="${i}" data-d="1" aria-label="Move down">&darr;</button><button class="ghost sm" data-rm="${k}" data-i="${i}">${tr("Remove")}</button></div></div>`).join("");markSample()}
 const pdl=()=>[["Father's name",S.father],["Date of birth",S.dob],["Nationality",S.nat],["Marital status",S.mar]].filter(x=>x[1]);
+const rng=(e,w)=>{if(!e.ongoing)return e.dates||"";const s=String(e.dates||"").trim().split(/\s*[-\u2013\u2014]\s*/)[0].trim();return s?s+" - "+w:w};
 function data(){const list=s=>s.split(",").map(x=>x.trim()).filter(Boolean),has=(a,f)=>a.filter(e=>f.some(x=>e[x]));
  return{c:[S.email,S.phone,S.city,S.link].filter(Boolean),sk:list(S.skills),lg:list(S.langs),ex:has(S.exp,["role","company","desc"]),ed:has(S.edu,["degree","school"]),pr:has(S.proj,["name","desc"]),ce:has(S.cert,["name"])}}
 function preview(){
@@ -125,9 +138,9 @@ function preview(){
  p.innerHTML=`<header>${S.photo?`<img src="${S.photo}" alt="">`:""}<div><h3>${esc(S.name)||'<span class="ph">Your name</span>'}</h3><div class="role">${esc(S.title)}</div></div></header>
  <div class="cols"><aside>${c.length?"<h4>Contact</h4>"+c.map(x=>`<div>${esc(x)}</div>`).join(""):""}${sk.length?"<h4>Skills</h4>"+chips(sk):""}${lg.length?"<h4>Languages</h4>"+chips(lg):""}</aside>
  <div>${S.summary?`<h4>About me</h4><p>${esc(S.summary)}</p>`:""}
- ${ex.length?"<h4>Experience</h4>"+ex.map(e=>`<div class="it"><div class="tp">${esc(e.role)}<span>${esc(e.dates)}</span></div><div>${esc(e.company)}</div><p>${esc(e.desc)}</p></div>`).join(""):""}
+ ${ex.length?"<h4>Experience</h4>"+ex.map(e=>`<div class="it"><div class="tp">${esc(e.role)}<span>${esc(rng(e,"Present"))}</span></div><div>${esc(e.company)}</div><p>${esc(e.desc)}</p></div>`).join(""):""}
  ${pr.length?"<h4>Projects</h4>"+pr.map(e=>`<div class="it"><div class="tp">${esc(e.name)}<span>${esc(e.link)}</span></div><p>${esc(e.desc)}</p></div>`).join(""):""}
- ${ed.length?"<h4>Education</h4>"+ed.map(e=>`<div class="it"><div class="tp">${esc(e.degree)}<span>${esc(e.dates)}</span></div><div>${esc(e.school)}</div></div>`).join(""):""}
+ ${ed.length?"<h4>Education</h4>"+ed.map(e=>`<div class="it"><div class="tp">${esc(e.degree)}<span>${esc(rng(e,"Ongoing"))}</span></div><div>${esc(e.school)}</div></div>`).join(""):""}
  ${ce.length?"<h4>Certifications</h4>"+ce.map(e=>`<div class="it"><div class="tp">${esc(e.name)}<span>${esc(e.year)}</span></div><div>${esc(e.issuer)}</div></div>`).join(""):""}
  ${pdl().length?"<h4>Personal details</h4>"+pdl().map(x=>`<div><b>${x[0]}:</b> ${esc(x[1])}</div>`).join(""):""}${S.refs?`<h4>References</h4><p>${esc(S.refs)}</p>`:""}</div></div>`;
  const ok=[S.name,S.title,S.email,S.phone,S.summary,S.skills,S.exp.some(e=>e.role),S.edu.some(e=>e.degree)].filter(Boolean).length,pc=Math.round(ok/8*100),n=S.summary.length;
@@ -150,7 +163,7 @@ $("tpl").onclick=e=>{const t=e.target.dataset.t;if(!t)return;S.tpl=t;save();prev
 $("size").onclick=e=>{if(e.target.dataset.z){S.size=e.target.dataset.z;save();preview()}};
 $("font").onchange=e=>{S.font=e.target.value;save();preview()};
 document.addEventListener("input",e=>{const t=e.target;
- if(t.dataset.k)S[t.dataset.k]=t.value;else if(t.dataset.l)S[t.dataset.l][+t.dataset.i][t.dataset.f]=t.value;else return;save();preview();markSample()});
+ if(t.dataset.k)S[t.dataset.k]=t.value;else if(t.dataset.l)S[t.dataset.l][+t.dataset.i][t.dataset.f]=t.type==="checkbox"?t.checked:t.value;else return;save();preview();markSample()});
 document.addEventListener("click",e=>{const d=e.target.dataset;
  if(d.rm){S[d.rm].splice(+d.i,1);save();buildList(d.rm);preview()}
  else if(d.mv){const a=S[d.mv],i=+d.i,j=i+ +d.d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];save();buildList(d.mv,j);preview()}
@@ -180,9 +193,9 @@ $("file").onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image
 let DL=null,AI=null;
 if(window.claude&&claude.use){claude.use("downloads").then(d=>{DL=d}).catch(()=>{});claude.use("sample").then(s=>{AI=s;if(s)document.body.classList.add("ai")}).catch(()=>{})}
 async function saveFile(name,blob){
- if(DL){try{await DL.save({filename:name,data:blob});toast(tr("Saved: {x}",name))}catch(e){toast(e&&e.code==="declined"?"Download cancelled":"Could not save the file here")}return}
+ if(DL){try{await DL.save({filename:name,data:blob});dirty=false;toast(tr("Saved: {x}",name))}catch(e){toast(e&&e.code==="declined"?"Download cancelled":"Could not save the file here")}return}
  if(window.self!==window.top&&window.claude){return toast("Downloads are not available in this view. Open the page in its own tab.")}
- const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast(tr("Downloaded: {x}",name))}
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);dirty=false;toast(tr("Downloaded: {x}",name))}
 const dl=(name,type,text)=>saveFile(name,new Blob([text],{type}));
 const lat=s=>{const b=new Uint8Array(s.length);for(let i=0;i<s.length;i++)b[i]=s.charCodeAt(i)&255;return b};
 async function makePdf(){
@@ -237,9 +250,9 @@ function makeDocx(){const{c,sk,lg,ex,ed,pr,ce}=data(),col=S.ac.slice(1).toUpperC
  const row=(a,b)=>P(a+(b?"   |   "+b:""),{b:1,af:20});
  let d=P(S.name||"Your name",{b:1,c:col,sz:40,af:20})+(S.title?P(S.title,{sz:26,af:40}):"")+(c.length?P(c.join("   |   "),{c:"555555",af:120}):"");
  if(S.summary)d+=H("About me")+P(S.summary);
- if(ex.length)d+=H("Experience")+ex.map(e=>row(e.role,e.dates)+(e.company?P(e.company,{c:"555555",af:20}):"")+(String(e.desc||"").includes("\n")?lines(e.desc):P(e.desc))).join("");
+ if(ex.length)d+=H("Experience")+ex.map(e=>row(e.role,rng(e,"Present"))+(e.company?P(e.company,{c:"555555",af:20}):"")+(String(e.desc||"").includes("\n")?lines(e.desc):P(e.desc))).join("");
  if(pr.length)d+=H("Projects")+pr.map(e=>row(e.name,e.link)+P(e.desc)).join("");
- if(ed.length)d+=H("Education")+ed.map(e=>row(e.degree,e.dates)+P(e.school,{c:"555555"})).join("");
+ if(ed.length)d+=H("Education")+ed.map(e=>row(e.degree,rng(e,"Ongoing"))+P(e.school,{c:"555555"})).join("");
  if(ce.length)d+=H("Certifications")+ce.map(e=>row(e.name,e.year)+P(e.issuer,{c:"555555"})).join("");
  if(sk.length)d+=H("Skills")+P(sk.join(", "));if(lg.length)d+=H("Languages")+P(lg.join(", "));
  if(pdl().length)d+=H("Personal details")+pdl().map(x=>P(x[0]+": "+x[1])).join("");if(S.refs)d+=H("References")+P(S.refs);
@@ -286,10 +299,10 @@ $("word").onclick=()=>saveFile(fname()+".docx",makeDocx());
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.body.classList.toggle("pv",b.dataset.v==="prev");
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));scrollTo(0,0)});
 function setLogin(){$("login").textContent=tr(token?"Logout":"Login")}
-$("login").onclick=()=>{if(token){token=null;localStorage.removeItem(TOK);setLogin();toast("Logged out")}else{$("err").textContent="";$("dlg").showModal()}};
+$("login").onclick=()=>{if(token){token=null;SS.removeItem(TOK);setLogin();toast("Logged out")}else{$("err").textContent="";$("dlg").showModal()}};
 $("cancel").onclick=()=>$("dlg").close();
 async function doAuth(kind){try{const d=await api("/"+kind,"POST",{email:$("em").value,password:$("pw").value});
- token=d.token;localStorage.setItem(TOK,token);$("dlg").close();setLogin();
+ token=d.token;SS.setItem(TOK,token);$("dlg").close();setLogin();
  const r=await api("/resume");if(r.resume){S=stripSample(Object.assign(blank(),r.resume));persist();all();toast("Welcome back")}else{await cloud()}}
  catch(e){$("err").textContent=e.message==="Failed to fetch"?"Server is not running.":e.message}}
 $("doLogin").onclick=()=>doAuth("login");$("doReg").onclick=()=>doAuth("register");
@@ -313,3 +326,14 @@ if(location.protocol==="file:")noServer();
 else fetch("/api/health").then(r=>r.json()).then(j=>{if(!j.ok)throw 0;server=true;
   if(token)return api("/resume").then(r=>{if(r.resume){S=stripSample(Object.assign(blank(),r.resume));persist();all();snap()}})}).catch(()=>{if(!server)noServer()});
 if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+
+const hasOwn=()=>{const u=stripSample(JSON.parse(JSON.stringify(S)));return !!(u.name||u.title||u.email||u.phone||u.summary||u.skills||u.exp.some(e=>e.role||e.company||e.desc)||u.edu.some(e=>e.degree||e.school)||u.proj.length||u.cert.length)};
+addEventListener("beforeunload",e=>{if(dirty&&hasOwn()){e.preventDefault();e.returnValue=""}});
+let dip=null;const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true,canInstall=/^https?:$/.test(location.protocol)&&window.self===window.top&&!standalone;
+if(!canInstall){$("install").hidden=true;$("gInstall").hidden=true;$("tipInstall").hidden=true}
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e});
+addEventListener("appinstalled",()=>{dip=null;$("install").hidden=true;$("gInstall").hidden=true;toast("App installed")});
+async function installApp(){if(dip){const p=dip;dip=null;p.prompt();try{await p.userChoice}catch(e){}return}
+ const ua=navigator.userAgent,ios=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1),and=/android/i.test(ua);
+ $("instMsg").textContent=tr(ios?`On iPhone: tap the Share button (square with an arrow), then "Add to Home Screen", then "Add".`:and?`On Android: tap the menu (three dots) in Chrome, then "Install app" or "Add to Home screen".`:`On a computer: click the install icon at the right of the address bar, or open the browser menu and choose "Install Resume Pro".`);$("instDlg").showModal()}
+$("install").onclick=installApp;$("gInstall").onclick=()=>{$("guide").close();installApp()};$("instClose").onclick=()=>$("instDlg").close();

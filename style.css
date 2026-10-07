@@ -187,3 +187,8 @@ body.ur .paper{font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 @media(max-width:860px){.top{position:static;padding:8px 12px}.tools{gap:6px;width:100%;justify-content:space-between}.tools #help{padding:6px 8px;font-size:14px}.tools #print{padding:8px 12px;font-size:14px;min-height:38px}.tools select#lang{min-width:84px}}
 
 .ai-btn[data-ai="summary"]{display:inline-block}
+
+/* ---- v13: ongoing checkbox, install button ---- */
+.chk{display:flex;align-items:center;gap:10px;margin:12px 0 4px;font-size:15px;color:var(--ink);cursor:pointer}
+.chk input{width:24px;height:24px;padding:0;min-height:0;flex:none;accent-color:var(--ac);cursor:pointer}
+#install::before{content:"\1F4F2  "}#instMsg{margin:10px 0 16px;line-height:1.7}#instDlg{width:min(420px,94vw)}

@@ -5,15 +5,16 @@
 <title>Resume Pro - make a resume or CV, free</title>
 <meta name="description" content="Build a professional resume in minutes and download it as PDF or Word.">
 <meta name="theme-color" content="#6d4aff">
-<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg">
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Resume Pro"><link rel="icon" href="icon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head><body>
 <header class="top">
- <div class="logo"><img src="icon.svg" alt="CV"><span class="lt"><span class="nm">Resume Pro<small class="ver">v12</small></span><small class="tag">Resume and CV Maker</small></span></div>
+ <div class="logo"><img src="icon.svg" alt="CV"><span class="lt"><span class="nm">Resume Pro<small class="ver">v13</small></span><small class="tag">Resume and CV Maker</small></span></div>
  <div class="tools">
   <select id="lang" aria-label="Language"><option value="en">English</option><option value="ur">اردو</option><option value="rm">Roman Urdu</option></select>
+  <button id="install" class="ghost">Download App</button>
   <button id="help" class="ghost">How to use</button>
   <button id="login" class="ghost">Login</button>
   <button id="print" class="main">Download PDF</button>
@@ -71,14 +72,16 @@
  <li><span><b>Add your details.</b> Your resume updates as you type. The "Next" button always shows what to add.</span></li>
  <li><span><b>Download.</b> Press "Download PDF". Your PDF file is saved. Done.</span></li></ol>
  <b>Good to know</b>
- <ul class="tips"><li>No signup needed. Your work saves on this device automatically.</li><li>Made a mistake? Use Undo. Use the arrows to move entries up or down.</li><li>For a CV, also fill in Personal details and References.</li><li>Keep it to one page, with short and clear points.</li><li id="tipLogin">Login to open your resume on any device.</li><li>Use Download Word if you want to edit it in MS Word.</li><li id="tipAI">Not sure how to write it? Tap "Write for me", type in your own words (Roman Urdu is fine) and get professional English.</li></ul>
- <div class="row"><button id="gSample">Fill with sample</button><button id="gClose" class="main">Start</button></div></dialog>
+ <ul class="tips"><li>No signup needed. Your work saves on this device automatically.</li><li>Made a mistake? Use Undo. Use the arrows to move entries up or down.</li><li>For a CV, also fill in Personal details and References.</li><li>Keep it to one page, with short and clear points.</li><li id="tipLogin">Login to open your resume on any device.</li><li>Use Download Word if you want to edit it in MS Word.</li><li id="tipAI">Not sure how to write it? Tap "Write for me", type in your own words (Roman Urdu is fine) and get professional English.</li><li id="tipInstall">Tap "Download App" to put this on your phone like a normal app.</li></ul>
+ <div class="row"><button id="gSample">Fill with sample</button><button id="gClose" class="main">Start</button></div>
+ <button id="gInstall" class="ghost" style="width:100%;margin-top:8px">Download App</button></dialog>
 <dialog id="aiDlg"><h2>Write for me</h2><p class="mute">Write in your own words. Urdu, Roman Urdu or English all work. Only use true facts.</p>
  <p id="aiHint" class="mute"></p>
  <textarea id="aiIn" placeholder="Example: maine 2 saal shop par kaam kiya, customers ko sambhala aur cash ka hisab rakha"></textarea>
  <button id="aiGo" class="main">Write professional English</button>
  <label for="aiOut">Result (you can edit it)</label><textarea id="aiOut"></textarea><p id="aiNote" class="mute"></p><p id="aiErr" class="err" role="alert"></p>
  <div class="row"><button id="aiUse" class="main">Use this text</button><button id="aiClose" class="ghost">Close</button></div></dialog>
+<dialog id="instDlg"><h2>Install Resume Pro as an app</h2><p id="instMsg"></p><button id="instClose" class="main big">Close</button></dialog>
 <dialog id="ask"><p id="askMsg"></p><div class="row"><button id="askNo" class="ghost">Cancel</button><button id="askYes" class="main">Yes</button></div></dialog>
 <div id="toast" role="status"></div>
 <script src="app.js"></script>
