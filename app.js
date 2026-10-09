@@ -66,7 +66,6 @@ const TR=[
 [`Quick template used. You can edit it.`,`فوری نمونہ استعمال ہوا۔ آپ اسے بدل سکتے ہیں۔`,`Fori namoona istemal hua. Aap ise badal sakte hain.`],
 [`AI is busy, so a quick template was used. You can edit it.`,`اے آئی مصروف ہے، اس لیے فوری نمونہ لکھا گیا۔ آپ اسے بدل سکتے ہیں۔`,`AI masroof hai, is liye fori namoona likha gaya. Aap ise badal sakte hain.`],
 [`Save your resume online`,`اپنا ریزیومے آن لائن محفوظ کریں`,`Apna resume online save karein`],[`Login to open it on any device.`,`کسی بھی ڈیوائس پر کھولنے کے لیے لاگ اِن کریں۔`,`Kisi bhi device par kholne ke liye login karein.`],
-[`Password (6+ characters)`,`پاس ورڈ (6 یا زیادہ حروف)`,`Password (6 ya zyada huroof)`],[`Create account`,`نیا اکاؤنٹ بنائیں`,`Naya account banayein`],
 [`Download App`,`ایپ ڈاؤن لوڈ کریں`,`App download karein`],
 [`Install Resume Pro as an app`,`ریزیومے پرو کو ایپ کی طرح انسٹال کریں`,`Resume Pro ko app ki tarah install karein`],
 [`On iPhone: tap the Share button (square with an arrow), then "Add to Home Screen", then "Add".`,`آئی فون پر: شیئر کا بٹن (تیر والا چوکور) دبائیں، پھر "Add to Home Screen"، پھر "Add" دبائیں۔`,`iPhone par: Share button (teer wala chaukor) dabayein, phir "Add to Home Screen", phir "Add" dabayein.`],
@@ -75,12 +74,34 @@ const TR=[
 [`App installed`,`ایپ انسٹال ہو گئی`,`App install ho gayi`],
 [`Ongoing (still studying)`,`جاری ہے (ابھی پڑھ رہا ہوں)`,`Jaari hai (abhi parh raha hoon)`],
 [`I currently work here`,`میں ابھی یہاں کام کرتا ہوں`,`Main abhi yahan kaam karta hoon`],
-[`Tap "Download App" to put this on your phone like a normal app.`,`"ایپ ڈاؤن لوڈ کریں" دبائیں تاکہ یہ عام ایپ کی طرح آپ کے فون میں آ جائے۔`,`"App download karein" dabayein taake yeh aam app ki tarah aap ke phone mein aa jaye.`]
+[`Privacy and cookies`,`پرائیویسی اور کوکیز`,`Privacy aur cookies`],
+[`No tracking or advertising cookies are used, and there is no analytics.`,`کوئی ٹریکنگ یا اشتہاری کوکیز استعمال نہیں ہوتیں، اور کوئی اینالیٹکس نہیں ہے۔`,`Koi tracking ya ishtehari cookies istemal nahi hoti, aur koi analytics nahi hai.`],
+[`Your resume stays in this browser tab and is erased when you close the tab. It is not sent anywhere unless you use an online feature such as Login or the AI writer.`,`آپ کا ریزیومے اسی براؤزر ٹیب میں رہتا ہے اور ٹیب بند کرنے پر مٹ جاتا ہے۔ جب تک آپ لاگ اِن یا اے آئی رائٹر جیسی آن لائن سہولت استعمال نہ کریں، یہ کہیں نہیں بھیجا جاتا۔`,`Aap ka resume isi browser tab mein rehta hai aur tab band karne par mit jata hai. Jab tak aap Login ya AI writer jaisi online sahulat istemal na karein, yeh kahin nahi bheja jata.`],
+[`If you use Login, your email and resume are stored on this site's server.`,`اگر آپ لاگ اِن استعمال کریں تو آپ کی ای میل اور ریزیومے اس سائٹ کے سرور پر محفوظ ہوتے ہیں۔`,`Agar aap Login istemal karein to aap ki email aur resume is site ke server par save hote hain.`],
+[`PDF and Word files are made inside your browser. They are not uploaded.`,`پی ڈی ایف اور ورڈ فائلیں آپ کے براؤزر کے اندر بنتی ہیں۔ وہ کہیں اپلوڈ نہیں ہوتیں۔`,`PDF aur Word files aap ke browser ke andar banti hain. Woh kahin upload nahi hotein.`],
+[`Tap "Download App" to put this on your phone like a normal app.`,`"ایپ ڈاؤن لوڈ کریں" دبائیں تاکہ یہ عام ایپ کی طرح آپ کے فون میں آ جائے۔`,`"App download karein" dabayein taake yeh aam app ki tarah aap ke phone mein aa jaye.`],
+[`We only use your device's storage to remember your language choice. Press Accept to allow this. Press Reject and nothing is kept after you close the tab. There are no tracking or advertising cookies.`,`ہم آپ کی ڈیوائس کی میموری صرف آپ کی زبان کا انتخاب یاد رکھنے کے لیے استعمال کرتے ہیں۔ اجازت کے لیے "قبول کریں" دبائیں۔ "مسترد کریں" دبائیں تو ٹیب بند کرنے کے بعد کچھ یاد نہیں رکھا جاتا۔ کوئی ٹریکنگ یا اشتہاری کوکیز نہیں ہیں۔`,`Hum aap ke device ki memory sirf aap ki zubaan ka intikhab yaad rakhne ke liye istemal karte hain. Ijazat ke liye "Qubool karein" dabayein. "Radd karein" dabayein to tab band karne ke baad kuch yaad nahi rakha jata. Koi tracking ya ishtehari cookies nahi hain.`],
+[`Accept`,`قبول کریں`,`Qubool karein`],
+[`Reject`,`مسترد کریں`,`Radd karein`],
+[`Cookie settings`,`کوکیز کی ترتیبات`,`Cookie settings`],
+[`If you press Accept, your language choice is remembered on this device. If you press Reject, nothing is kept after you close the tab.`,`اگر آپ "قبول کریں" دبائیں تو آپ کی زبان کا انتخاب اس ڈیوائس پر یاد رکھا جاتا ہے۔ "مسترد کریں" دبائیں تو ٹیب بند کرنے کے بعد کچھ نہیں رکھا جاتا۔`,`Agar aap "Qubool karein" dabayein to aap ki zubaan ka intikhab is device par yaad rakha jata hai. "Radd karein" dabayein to tab band karne ke baad kuch nahi rakha jata.`],
+[`When AI writing is switched on, only the words you type, your job title, company and skills are sent to an AI service (Anthropic Claude), and only when you press the write button. Your name, phone number and email are never sent.`,`جب اے آئی رائٹنگ چالو ہو، تو صرف آپ کے لکھے الفاظ، کام، کمپنی اور ہنر ایک اے آئی سروس (Anthropic Claude) کو بھیجے جاتے ہیں، اور صرف لکھنے کا بٹن دبانے پر۔ آپ کا نام، فون نمبر اور ای میل کبھی نہیں بھیجے جاتے۔`,`Jab AI writing chalu ho, to sirf aap ke likhe alfaaz, kaam, company aur hunar ek AI service (Anthropic Claude) ko bheje jate hain, aur sirf likhne ka button dabane par. Aap ka naam, phone number aur email kabhi nahi bheje jate.`],
+[`The website host (Vercel) may keep normal server logs, such as your IP address. This site loads nothing from other companies.`,`ویب سائٹ کی ہوسٹنگ (Vercel) عام سرور لاگ رکھ سکتی ہے، جیسے آپ کا آئی پی ایڈریس۔ یہ سائٹ کسی دوسری کمپنی سے کچھ لوڈ نہیں کرتی۔`,`Website ki hosting (Vercel) aam server log rakh sakti hai, jaise aap ka IP address. Yeh site kisi doosri company se kuch load nahi karti.`],
+[`Clear my data now`,`میرا ڈیٹا ابھی مٹائیں`,`Mera data abhi mitayein`],
+[`Saved. Your language will be remembered.`,`محفوظ ہو گیا۔ آپ کی زبان یاد رکھی جائے گی۔`,`Save ho gaya. Aap ki zubaan yaad rakhi jayegi.`],
+[`Done. Nothing will be remembered after you close the tab.`,`ٹھیک ہے۔ ٹیب بند کرنے کے بعد کچھ یاد نہیں رکھا جائے گا۔`,`Theek hai. Tab band karne ke baad kuch yaad nahi rakha jayega.`],
+[`Your data was erased from this tab`,`آپ کا ڈیٹا اس ٹیب سے مٹا دیا گیا`,`Aap ka data is tab se mita diya gaya`],
+[`Create account`,`نیا اکاؤنٹ بنائیں`,`Naya account banayein`],
+[`Password (8+ characters)`,`پاس ورڈ (8 یا زیادہ حروف)`,`Password (8 ya zyada huroof)`],
+[`Only add what you are happy to share with an employer. Never add ID card numbers, bank details or passwords.`,`صرف وہی لکھیں جو آپ مالک کو بتانا چاہتے ہیں۔ شناختی کارڈ نمبر، بینک کی تفصیل یا پاس ورڈ کبھی نہ لکھیں۔`,`Sirf wohi likhein jo aap employer ko batana chahte hain. ID card number, bank ki tafseel ya password kabhi na likhein.`],
+[`Do not put your ID card number, bank details, passwords or home address on your CV.`,`اپنے سی وی پر شناختی کارڈ نمبر، بینک کی تفصیل، پاس ورڈ یا گھر کا پتہ نہ لکھیں۔`,`Apne CV par ID card number, bank ki tafseel, password ya ghar ka pata na likhein.`],
+[`To install the app, open the website link (it starts with https) in Chrome or Safari, then press Download App again.`,`ایپ انسٹال کرنے کے لیے ویب سائٹ کا لنک (جو https سے شروع ہوتا ہے) کروم یا سفاری میں کھولیں، پھر "ایپ ڈاؤن لوڈ کریں" دوبارہ دبائیں۔`,`App install karne ke liye website ka link (jo https se shuru hota hai) Chrome ya Safari mein kholein, phir "App download karein" dobara dabayein.`],
+[`To install the app, open this page in its own browser tab, then press Download App again.`,`ایپ انسٹال کرنے کے لیے اس صفحے کو الگ براؤزر ٹیب میں کھولیں، پھر "ایپ ڈاؤن لوڈ کریں" دوبارہ دبائیں۔`,`App install karne ke liye is page ko alag browser tab mein kholein, phir "App download karein" dobara dabayein.`]
 ];
 const DICT={ur:{},rm:{}};TR.forEach(r=>{DICT.ur[r[0]]=r[1];DICT.rm[r[0]]=r[2]});
-let LANG=(()=>{try{const l=localStorage.getItem("rp-lang");if(l==="en"||l==="ur"||l==="rm")return l}catch(e){}return /^ur/i.test(navigator.language||"")?"ur":"en"})();
+let LANG=(()=>{try{const l=(localStorage.getItem("rp-consent")==="yes"?localStorage:SS).getItem("rp-lang");if(l==="en"||l==="ur"||l==="rm")return l}catch(e){}return /^ur/i.test(navigator.language||"")?"ur":"en"})();
 const tr=(k,v)=>{const s=(LANG!=="en"&&DICT[LANG]&&DICT[LANG][k])||k;return v===undefined?s:s.replace("{x}",v)};
-const TAGS='label,summary,.hero h1,.hero p,.tag,#guide h2,#guide li span,#guide .tips li,#guide > b,#gSample,#gClose,#help,#print,#print2,#undo,#redo,#sample,#clear,#rmph,.add,#word,#prn,#bk,#tpl button,#size button,#askYes,#askNo,#aiDlg h2,#aiDlg p.mute:not(#aiHint):not(#aiNote),#aiGo,#aiUse,#aiClose,#dlg h2,#dlg p.mute,#doLogin,#doReg,#cancel,.tabs button,#install,#gInstall,#instDlg h2,#instClose';
+const TAGS='label,summary,.hero h1,.hero p,.tag,#guide h2,#guide li span,#guide .tips li,#guide > b,#gSample,#gClose,#help,#print,#print2,#undo,#redo,#sample,#clear,#rmph,.add,#word,#prn,#bk,#tpl button,#size button,#askYes,#askNo,#aiDlg h2,#aiDlg p.mute:not(#aiHint):not(#aiNote),#aiGo,#aiUse,#aiClose,#dlg h2,#dlg p.mute,#doLogin,#doReg,#cancel,.tabs button,#install,#gInstall,#instDlg h2,#instClose,#cookie p,#cookieYes,#cookieNo,#cookieSet,#cookieMore,#priv,#privDlg h2,#privDlg li,#privClose,#privClear,.hint';
 const LISTS={
  exp:[["role","Job title"],["company","Company"],["dates","Dates (e.g. 2022 - Present)"],["ongoing","I currently work here","c"],["desc","What did you do?","t"]],
  edu:[["degree","Degree"],["school","School or university"],["dates","Dates"],["ongoing","Ongoing (still studying)","c"]],
@@ -100,9 +121,18 @@ const SAMPLE={name:"Muhammad Arslan",title:"Graphic Designer",email:"name@exampl
 const COLORS=["#6d4aff","#2563eb","#0d9488","#e11d74","#f97316"];
 let S=blank(),token=null,timer,tt,hT,hist=[],hi=-1;
 try{localStorage.removeItem(KEY);localStorage.removeItem(TOK)}catch(e){} // older versions kept resumes on the device: remove them
-try{Object.assign(S,JSON.parse(SS.getItem(KEY)||"{}"));token=SS.getItem(TOK)}catch(e){}
+try{S=sanitize(JSON.parse(SS.getItem(KEY)||"{}"));token=SS.getItem(TOK)}catch(e){}
 // old sample left in this browser by an earlier version: swap it for the new masked sample
 const design=()=>({tpl:S.tpl,ac:S.ac,font:S.font,size:S.size});
+function sanitize(s){const o=blank();if(!s||typeof s!=="object"||Array.isArray(s))return o;
+ const str=(v,n)=>typeof v==="string"?v.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,"").slice(0,n):"";
+ ["name","title","email","phone","city","link","father","dob","nat","mar","refs"].forEach(k=>o[k]=str(s[k],200));
+ o.summary=str(s.summary,2000);o.skills=str(s.skills,500);o.langs=str(s.langs,300);
+ o.photo=typeof s.photo==="string"&&s.photo.length<250000&&/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(s.photo)?s.photo:"";
+ o.tpl=["classic","modern","minimal","bold","compact"].includes(s.tpl)?s.tpl:"classic";o.font=["sans","serif","arial"].includes(s.font)?s.font:"sans";
+ o.size=["s","m","l"].includes(s.size)?s.size:"m";o.ac=typeof s.ac==="string"&&/^#[0-9a-fA-F]{6}$/.test(s.ac)?s.ac:"#6d4aff";
+ Object.keys(LISTS).forEach(k=>{o[k]=(Array.isArray(s[k])?s[k]:[]).slice(0,30).map(it=>{const n=newItem(k);LISTS[k].forEach(f=>{const v=it&&typeof it==="object"?it[f[0]]:"";n[f[0]]=f[2]==="c"?v===true:str(v,f[2]==="t"?1500:200)});return n})});
+ if(!o.exp.length)o.exp=[newItem("exp")];if(!o.edu.length)o.edu=[newItem("edu")];return o}
 function stripSample(s){ // sample text must only appear after pressing "Try sample": remove any sample text the user never changed
  const old=s.name==="Ayesha Khan"&&s.email==="ayesha@example.com";
  if(old)return Object.assign(blank(),{tpl:s.tpl,ac:s.ac,font:s.font,size:s.size});
@@ -292,9 +322,9 @@ $("aiUse").onclick=()=>{const v=$("aiOut").value.trim();if(!v)return;const t=aiT
  if(t==="summary"){S.summary=v;$("summary").value=v}else{const[k,i,f]=t.split(":");S[k][+i][f]=v;const el=$(k+i+f);if(el)el.value=v}
  save();preview();$("aiDlg").close();toast("Text added. You can still edit it.")};
 $("prn").onclick=()=>{const t=document.title;document.title=(S.name||"Resume")+" - Resume";window.print();setTimeout(()=>document.title=t,1000)};
-const fname=()=>(S.name||"resume").trim().replace(/\s+/g,"-");
+const fname=()=>((S.name||"resume").normalize("NFKC").replace(/[^\p{L}\p{N}]+/gu,"-").replace(/^-+|-+$/g,"").slice(0,60))||"resume";
 $("bk").onclick=()=>dl(fname()+".json","application/json",JSON.stringify(S));
-$("rs").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{S=Object.assign(blank(),JSON.parse(t));save();all();toast("Backup loaded")}catch(x){toast("This file is not a valid backup")}});e.target.value=""};
+$("rs").onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{S=sanitize(JSON.parse(t));save();all();toast("Backup loaded")}catch(x){toast("This file is not a valid backup")}});e.target.value=""};
 $("word").onclick=()=>saveFile(fname()+".docx",makeDocx());
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.body.classList.toggle("pv",b.dataset.v==="prev");
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));scrollTo(0,0)});
@@ -303,12 +333,12 @@ $("login").onclick=()=>{if(token){token=null;SS.removeItem(TOK);setLogin();toast
 $("cancel").onclick=()=>$("dlg").close();
 async function doAuth(kind){try{const d=await api("/"+kind,"POST",{email:$("em").value,password:$("pw").value});
  token=d.token;SS.setItem(TOK,token);$("dlg").close();setLogin();
- const r=await api("/resume");if(r.resume){S=stripSample(Object.assign(blank(),r.resume));persist();all();toast("Welcome back")}else{await cloud()}}
+ const r=await api("/resume");if(r.resume){S=stripSample(sanitize(r.resume));persist();all();toast("Welcome back")}else{await cloud()}}
  catch(e){$("err").textContent=e.message==="Failed to fetch"?"Server is not running.":e.message}}
 $("doLogin").onclick=()=>doAuth("login");$("doReg").onclick=()=>doAuth("register");
 setLogin();all();snap();
 document.querySelectorAll(TAGS).forEach(el=>{el.dataset.en=el.innerHTML.trim()});
-function applyLang(l){LANG=l;try{localStorage.setItem("rp-lang",l)}catch(e){}
+function applyLang(l){LANG=l;try{(localStorage.getItem("rp-consent")==="yes"?localStorage:SS).setItem("rp-lang",l)}catch(e){}
  document.documentElement.lang=l==="ur"?"ur":"en";document.body.dir=l==="ur"?"rtl":"ltr";document.body.classList.toggle("ur",l==="ur");
  document.querySelectorAll("[data-en]").forEach(el=>{el.innerHTML=tr(el.dataset.en)});
  $("lang").value=l;document.querySelectorAll("#gLang button").forEach(b=>b.classList.toggle("on",b.dataset.lg===l));
@@ -321,19 +351,29 @@ $("print2").onclick=()=>$("print").click();
 applyLang(LANG);
 if(location.protocol!=="file:")fetch("/api/write").then(r=>r.json()).then(x=>{if(x&&x.ai===true){SRVAI=true;document.body.classList.add("ai")}}).catch(()=>{});
 let server=false;
-function noServer(){$("login").hidden=true;const t=$("tipLogin");if(t)t.hidden=true}
+function noServer(){$("login").hidden=true;const t=$("tipLogin");if(t)t.hidden=true;const p=$("privLogin");if(p)p.hidden=true}
 if(location.protocol==="file:")noServer();
 else fetch("/api/health").then(r=>r.json()).then(j=>{if(!j.ok)throw 0;server=true;
-  if(token)return api("/resume").then(r=>{if(r.resume){S=stripSample(Object.assign(blank(),r.resume));persist();all();snap()}})}).catch(()=>{if(!server)noServer()});
+  if(token)return api("/resume").then(r=>{if(r.resume){S=stripSample(sanitize(r.resume));persist();all();snap()}})}).catch(()=>{if(!server)noServer()});
 if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 
 const hasOwn=()=>{const u=stripSample(JSON.parse(JSON.stringify(S)));return !!(u.name||u.title||u.email||u.phone||u.summary||u.skills||u.exp.some(e=>e.role||e.company||e.desc)||u.edu.some(e=>e.degree||e.school)||u.proj.length||u.cert.length)};
 addEventListener("beforeunload",e=>{if(dirty&&hasOwn()){e.preventDefault();e.returnValue=""}});
-let dip=null;const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true,canInstall=/^https?:$/.test(location.protocol)&&window.self===window.top&&!standalone;
-if(!canInstall){$("install").hidden=true;$("gInstall").hidden=true;$("tipInstall").hidden=true}
+let dip=null;const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+if(standalone){$("install").hidden=true;$("gInstall").hidden=true;$("tipInstall").hidden=true}
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e});
 addEventListener("appinstalled",()=>{dip=null;$("install").hidden=true;$("gInstall").hidden=true;toast("App installed")});
 async function installApp(){if(dip){const p=dip;dip=null;p.prompt();try{await p.userChoice}catch(e){}return}
  const ua=navigator.userAgent,ios=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1),and=/android/i.test(ua);
- $("instMsg").textContent=tr(ios?`On iPhone: tap the Share button (square with an arrow), then "Add to Home Screen", then "Add".`:and?`On Android: tap the menu (three dots) in Chrome, then "Install app" or "Add to Home screen".`:`On a computer: click the install icon at the right of the address bar, or open the browser menu and choose "Install Resume Pro".`);$("instDlg").showModal()}
+ $("instMsg").textContent=tr(location.protocol==="file:"?`To install the app, open the website link (it starts with https) in Chrome or Safari, then press Download App again.`:window.self!==window.top?`To install the app, open this page in its own browser tab, then press Download App again.`:ios?`On iPhone: tap the Share button (square with an arrow), then "Add to Home Screen", then "Add".`:and?`On Android: tap the menu (three dots) in Chrome, then "Install app" or "Add to Home screen".`:`On a computer: click the install icon at the right of the address bar, or open the browser menu and choose "Install Resume Pro".`);$("instDlg").showModal()}
 $("install").onclick=installApp;$("gInstall").onclick=()=>{$("guide").close();installApp()};$("instClose").onclick=()=>$("instDlg").close();
+
+const consent=()=>{try{return localStorage.getItem("rp-consent")}catch(e){return null}};
+try{if(consent()!=="yes")localStorage.removeItem("rp-lang");localStorage.removeItem("rp-cookie")}catch(e){}
+$("cookie").hidden=consent()!==null;
+function setConsent(v){try{localStorage.setItem("rp-consent",v);if(v==="yes")localStorage.setItem("rp-lang",LANG);else localStorage.removeItem("rp-lang")}catch(e){}
+ SS.setItem("rp-lang",LANG);$("cookie").hidden=true;toast(v==="yes"?"Saved. Your language will be remembered.":"Done. Nothing will be remembered after you close the tab.")}
+$("cookieYes").onclick=()=>setConsent("yes");$("cookieNo").onclick=()=>setConsent("no");$("cookieSet").onclick=()=>{$("cookie").hidden=false};
+$("cookieMore").onclick=$("priv").onclick=()=>$("privDlg").showModal();$("privClose").onclick=()=>$("privDlg").close();
+$("privClear").onclick=()=>{S=blank();SS.removeItem(KEY);SS.removeItem(TOK);token=null;dirty=false;all();setLogin();$("privDlg").close();toast("Your data was erased from this tab")};
+if(location.protocol==="file:"){const p=$("privLogin");if(p)p.hidden=true}

@@ -1,7 +1,8 @@
 // "Write for me" backend. Works on Vercel (api/write.js) and with the local server.js.
-// Needs the environment variable ANTHROPIC_API_KEY. Optional: AI_MODEL, ANTHROPIC_API_URL.
-const hits=new Map();
-const clean=(v,n=400)=>String(v||"").replace(/\s+/g," ").trim().slice(0,n);
+// Needs the environment variable ANTHROPIC_API_KEY (keep it ONLY in Vercel settings, never in code).
+// Optional: AI_MODEL, AI_MAX_PER_HOUR, ANTHROPIC_API_URL.
+const hits=new Map();let total=[];
+const clean=(v,n=400)=>String(v||"").replace(/[\u0000-\u001f]+/g," ").replace(/\s+/g," ").trim().slice(0,n);
 function buildPrompt(b){
   const summary=b.kind==="summary";
   const f=[["Job title",b.title],["Company",b.company],["Skills",b.skills],["Experience",b.exp],["User's words",b.text]].map(([k,v])=>[k,clean(v)]).filter(x=>x[1]);
@@ -12,18 +13,23 @@ function buildPrompt(b){
     f.map(x=>x[0]+": "+x[1]).join("\n");
 }
 module.exports=async(req,res)=>{
-  const send=(c,o)=>{res.statusCode=c;res.setHeader("Content-Type","application/json");res.setHeader("Cache-Control","no-store");res.end(JSON.stringify(o))};
+  const send=(c,o)=>{res.statusCode=c;res.setHeader("Content-Type","application/json");res.setHeader("Cache-Control","no-store");res.setHeader("X-Content-Type-Options","nosniff");res.end(JSON.stringify(o))};
   const key=process.env.ANTHROPIC_API_KEY;
   if(req.method==="GET")return send(200,{ok:true,ai:!!key});
   if(req.method!=="POST")return send(405,{error:"Method not allowed"});
   if(!key)return send(503,{error:"AI is not set up on this site yet."});
-  const o=req.headers.origin;
-  if(o){try{if(new URL(o).host!==req.headers.host)return send(403,{error:"Not allowed"})}catch{return send(403,{error:"Not allowed"})}}
+  // only our own website pages may call this (blocks other sites from using your key)
+  const o=req.headers.origin,sfs=req.headers["sec-fetch-site"];
+  let same=false;try{same=o?new URL(o).host===req.headers.host:sfs==="same-origin"}catch{same=false}
+  if(!same)return send(403,{error:"Not allowed"});
+  if(!String(req.headers["content-type"]||"").toLowerCase().includes("application/json"))return send(415,{error:"Bad request"});
   const ip=String(req.headers["x-forwarded-for"]||(req.socket&&req.socket.remoteAddress)||"x").split(",")[0].trim(),t=Date.now();
   const a=(hits.get(ip)||[]).filter(x=>t-x<36e5);a.push(t);hits.set(ip,a);if(hits.size>5000)hits.clear();
-  if(a.filter(x=>t-x<6e4).length>6||a.length>30)return send(429,{error:"Too many requests. Please try again in a few minutes."});
+  total=total.filter(x=>t-x<36e5);total.push(t);
+  if(a.filter(x=>t-x<6e4).length>6||a.length>30||total.length>(+process.env.AI_MAX_PER_HOUR||300))return send(429,{error:"Too many requests. Please try again in a few minutes."});
   let b=req.body;if(typeof b==="string"){try{b=JSON.parse(b)}catch{b=null}}
-  if(!b||typeof b!=="object")return send(400,{error:"Bad request"});
+  if(!b||typeof b!=="object"||Array.isArray(b))return send(400,{error:"Bad request"});
+  if(JSON.stringify(b).length>6000)return send(413,{error:"Too much text"});
   const prompt=buildPrompt(b);
   if(!prompt)return send(400,{error:"Please write a few words, or add your job title and skills first."});
   try{
@@ -33,6 +39,6 @@ module.exports=async(req,res)=>{
     if(!r.ok)return send(502,{error:"The writing service is busy. Please try again in a moment."});
     const j=await r.json(),text=((j.content||[]).find(x=>x.type==="text")||{}).text;
     if(!text)return send(502,{error:"No text came back. Please try again."});
-    return send(200,{text:text.trim()});
+    return send(200,{text:String(text).trim().slice(0,1500)});
   }catch{return send(502,{error:"Could not reach the writing service. Please try again."})}
 };

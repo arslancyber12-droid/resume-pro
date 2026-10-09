@@ -6,12 +6,10 @@
 <meta name="description" content="Build a professional resume in minutes and download it as PDF or Word.">
 <meta name="theme-color" content="#6d4aff">
 <link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Resume Pro"><link rel="icon" href="icon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head><body>
 <header class="top">
- <div class="logo"><img src="icon.svg" alt="CV"><span class="lt"><span class="nm">Resume Pro<small class="ver">v13</small></span><small class="tag">Resume and CV Maker</small></span></div>
+ <div class="logo"><img src="icon.svg" alt="CV"><span class="lt"><span class="nm">Resume Pro<small class="ver">v15</small></span><small class="tag">Resume and CV Maker</small></span></div>
  <div class="tools">
   <select id="lang" aria-label="Language"><option value="en">English</option><option value="ur">اردو</option><option value="rm">Roman Urdu</option></select>
   <button id="install" class="ghost">Download App</button>
@@ -49,7 +47,7 @@
   <details><summary data-ico="🛠️">Skills and languages</summary><div class="in">
    <label for="skills">Skills (separate with commas)</label><input id="skills" data-k="skills" placeholder="Photoshop, Illustrator, Figma">
    <label for="langs">Languages (separate with commas)</label><input id="langs" data-k="langs" placeholder="Urdu, English, Punjabi"></div></details>
-  <details><summary data-ico="🪪">Personal details (for CV)</summary><div class="in">
+  <details><summary data-ico="🪪">Personal details (for CV)</summary><div class="in"><p class="hint">Only add what you are happy to share with an employer. Never add ID card numbers, bank details or passwords.</p>
    <div class="row"><div><label for="father">Father's name</label><input id="father" data-k="father" placeholder="xxxxxxxx"></div><div><label for="dob">Date of birth</label><input id="dob" data-k="dob" placeholder="xx-xx-2000"></div></div>
    <div class="row"><div><label for="nat">Nationality</label><input id="nat" data-k="nat" placeholder="Pakistani"></div><div><label for="mar">Marital status</label><input id="mar" data-k="mar" placeholder="Single"></div></div></div></details>
   <details><summary data-ico="📞">References</summary><div class="in"><input id="refs" data-k="refs" placeholder="Available on request"></div></details>
@@ -59,10 +57,13 @@
  </section>
  <section class="stage"><div class="paper" id="paper" dir="ltr" aria-label="Resume preview"></div></section>
 </main>
+<div id="cookie" class="cookie" role="region" aria-label="Cookies" hidden><p>We only use your device's storage to remember your language choice. Press Accept to allow this. Press Reject and nothing is kept after you close the tab. There are no tracking or advertising cookies.</p><div><button id="cookieMore" class="ghost sm">Privacy and cookies</button><button id="cookieNo" class="choice">Reject</button><button id="cookieYes" class="choice">Accept</button></div></div>
+<footer class="foot"><button id="priv" class="ghost sm">Privacy and cookies</button><button id="cookieSet" class="ghost sm">Cookie settings</button></footer>
+<dialog id="privDlg"><h2>Privacy and cookies</h2><ul class="tips"><li>No tracking or advertising cookies are used, and there is no analytics.</li><li>Your resume stays in this browser tab and is erased when you close the tab. It is not sent anywhere unless you use an online feature such as Login or the AI writer.</li><li>If you press Accept, your language choice is remembered on this device. If you press Reject, nothing is kept after you close the tab.</li><li id="privAI">When AI writing is switched on, only the words you type, your job title, company and skills are sent to an AI service (Anthropic Claude), and only when you press the write button. Your name, phone number and email are never sent.</li><li id="privLogin">If you use Login, your email and resume are stored on this site's server.</li><li>The website host (Vercel) may keep normal server logs, such as your IP address. This site loads nothing from other companies.</li><li>PDF and Word files are made inside your browser. They are not uploaded.</li></ul><button id="privClear" class="ghost" style="width:100%;margin-top:6px">Clear my data now</button><button id="privClose" class="main big">Close</button></dialog>
 <nav class="tabs"><button data-v="edit" class="on">Edit</button><button data-v="prev">Preview</button></nav>
 <dialog id="dlg"><h2>Save your resume online</h2><p class="mute">Login to open it on any device.</p>
  <label for="em">Email</label><input id="em" type="email" autocomplete="email">
- <label for="pw">Password (6+ characters)</label><input id="pw" type="password" autocomplete="current-password">
+ <label for="pw">Password (8+ characters)</label><input id="pw" type="password" autocomplete="current-password">
  <p id="err" class="err" role="alert"></p>
  <div class="row"><button id="doLogin" class="main">Login</button><button id="doReg" class="ghost">Create account</button></div>
  <button id="cancel" class="ghost sm">Close</button></dialog>
@@ -72,7 +73,7 @@
  <li><span><b>Add your details.</b> Your resume updates as you type. The "Next" button always shows what to add.</span></li>
  <li><span><b>Download.</b> Press "Download PDF". Your PDF file is saved. Done.</span></li></ol>
  <b>Good to know</b>
- <ul class="tips"><li>No signup needed. Your work saves on this device automatically.</li><li>Made a mistake? Use Undo. Use the arrows to move entries up or down.</li><li>For a CV, also fill in Personal details and References.</li><li>Keep it to one page, with short and clear points.</li><li id="tipLogin">Login to open your resume on any device.</li><li>Use Download Word if you want to edit it in MS Word.</li><li id="tipAI">Not sure how to write it? Tap "Write for me", type in your own words (Roman Urdu is fine) and get professional English.</li><li id="tipInstall">Tap "Download App" to put this on your phone like a normal app.</li></ul>
+ <ul class="tips"><li>No signup needed. Your work saves on this device automatically.</li><li>Made a mistake? Use Undo. Use the arrows to move entries up or down.</li><li>For a CV, also fill in Personal details and References.</li><li>Keep it to one page, with short and clear points.</li><li id="tipLogin">Login to open your resume on any device.</li><li>Use Download Word if you want to edit it in MS Word.</li><li id="tipAI">Not sure how to write it? Tap "Write for me", type in your own words (Roman Urdu is fine) and get professional English.</li><li>Do not put your ID card number, bank details, passwords or home address on your CV.</li><li id="tipInstall">Tap "Download App" to put this on your phone like a normal app.</li></ul>
  <div class="row"><button id="gSample">Fill with sample</button><button id="gClose" class="main">Start</button></div>
  <button id="gInstall" class="ghost" style="width:100%;margin-top:8px">Download App</button></dialog>
 <dialog id="aiDlg"><h2>Write for me</h2><p class="mute">Write in your own words. Urdu, Roman Urdu or English all work. Only use true facts.</p>
